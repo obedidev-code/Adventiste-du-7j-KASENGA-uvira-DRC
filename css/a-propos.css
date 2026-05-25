@@ -1,0 +1,166 @@
+/* PAGE À PROPOS - STYLES SPÉCIFIQUES */
+.page-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.page-hero-content h1 {
+    font-size: 55px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px black;
+}
+
+.page-hero-content p {
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black;
+}
+
+.about-page, .valeurs, .pasteur, .impact, .call-to-action {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about-page-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-page-text {
+    flex: 1;
+}
+
+.about-page-text h2 {
+    color: #1F4D3D;
+    font-size: 36px;
+}
+
+.about-page-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.about-page-image {
+    flex: 1;
+}
+
+.about-page-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+}
+
+.valeurs {
+    background-color: #fdf79e;
+    text-align: center;
+}
+
+.valeurs h2 {
+    color: #1F4D3D;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.valeurs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.valeur {
+    background: white;
+    padding: 30px 20px;
+    width: 220px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.valeur:hover {
+    transform: translateY(-5px);
+}
+
+.valeur i {
+    font-size: 50px;
+    color: #1F4D3D;
+}
+
+.valeur h3 {
+    margin: 15px 0 10px;
+}
+
+.pasteur-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pasteur-image {
+    flex: 1;
+}
+
+.pasteur-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+}
+
+.pasteur-text {
+    flex: 1;
+}
+
+.pasteur-text h2 {
+    color: #1F4D3D;
+    font-size: 36px;
+}
+
+.pasteur-text h3 {
+    color: #E67E22;
+    font-size: 26px;
+}
+
+.impact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    background: #1F4D3D;
+    color: white;
+    border-radius: 30px;
+    margin: 40px auto;
+}
+
+.impact-item i {
+    font-size: 45px;
+}
+
+.impact-item h3 {
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.call-to-action {
+    text-align: center;
+    background: #faf7d6;
+    border-radius: 30px;
+}
+
+.call-to-action h2 {
+    color: #1F4D3D;
+}
+
+.call-to-action button {
+    background: #E67E22;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Direct - Église Adventiste Kasenga</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="font/bootstrap-icons.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="header">
+    <div class="logo">
+        <i class="bi bi-cross"></i>
+        <span>ADVENTISTE</span> KASENGA
+    </div>
+    <nav class="nav" id="nav">
+        <a href="index.html">Accueil</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="croyances.html">Croyances</a>
+        <a href="evenements.html">Événements</a>
+        <a href="direct.html">En Direct</a>
+        <a href="chorales.html">Chorales</a>
+        <a href="contact.html">Contact</a>
+        <button class="btn-join" onclick="window.location.href='contact.html'">
+            <i class="bi bi-people-fill"></i> Rejoindre
+        </button>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <h1>Culte en Direct</h1>
+        <p>Vivez l'adoration où que vous soyez</p>
+    </div>
+</section>
+
+<!-- VIDEO DIRECT -->
+<section class="live-section">
+    <div class="container">
+        <div class="live-video">
+            <div class="video-container">
+                <!-- Remplacez l'ID YouTube par le vôtre -->
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" 
+                        title="Culte en direct - Église Adventiste Kasenga"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="live-info">
+                <div class="live-badge">
+                    <i class="bi bi-record-circle"></i> EN DIRECT
+                </div>
+                <h2>Culte du Sabbat</h2>
+                <p>Avec le Pasteur Antipa Balume et l'équipe de louange</p>
+                <div class="live-schedule">
+                    <p><i class="bi bi-clock"></i> Prochain direct : Samedi à 9h00</p>
+                    <p><i class="bi bi-bell"></i> Activez les notifications pour ne rien manquer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HORAIRES DES CULTES -->
+<section class="schedule">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Programme</span>
+            <h2>Horaires des cultes</h2>
+        </div>
+        <div class="schedule-grid">
+            <div class="schedule-card">
+                <i class="bi bi-church"></i>
+                <h3>Culte Principal</h3>
+                <p>Samedi</p>
+                <span>9h00 - 12h00</span>
+            </div>
+            <div class="schedule-card">
+                <i class="bi bi-book"></i>
+                <h3>Étude Biblique</h3>
+                <p>.........</p>
+                <span>17h00 - 19h00</span>
+            </div>
+            <div class="schedule-card">
+                <i class="bi bi-music-note"></i>
+                <h3>Soirée de Louange</h3>
+                <p>..........</p>
+                <span>samedi</span>
+            </div>
+            <div class="schedule-card">
+                <i class="bi bi-people"></i>
+                <h3>Jeunesse Adventiste</h3>
+                <p>Samedi après-midi</p>
+                <span>14h00 - 16h00</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REPLAYS -->
+<section class="replays">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Messages précédents</span>
+            <h2>Regarder les replays</h2>
+        </div>
+        <div class="replays-grid">
+            <div class="replay-card">
+                <div class="replay-thumbnail">
+                    <img src="images/mzee_precie.jpg" alt="Message 1"> 
+                     <video src=""></video>
+                    <i class="bi bi-play-circle"></i>
+                </div>
+                <div class="replay-info">
+                    <h3>La puissance de l'espérance</h3>
+                    <p>Pasteur Antipa Balume Brave</p>
+                    <span>Voir →</span>
+                </div>
+            </div>
+            <div class="replay-card">
+                <div class="replay-thumbnail">
+                    <img src="images/les_seraphins.jpg" alt="Message 2">
+                    <i class="bi bi-play-circle"></i>
+                </div>
+                <div class="replay-info">
+                    <h3>Le sabbat, un signe d'alliance</h3>
+                    <p>Pasteur Antipa Balume Brave</p>
+                    <span>Voir →</span>
+                </div>
+            </div>
+            <div class="replay-card">
+                <div class="replay-thumbnail">
+                    <img src="images/aller dans le monde.jpg" alt="Message 3">
+                    <i class="bi bi-play-circle"></i>
+                </div>
+                <div class="replay-info">
+                    <h3>Prêts pour le retour de Jésus</h3>
+                    <p>Pasteur Antipa Balume Brave</p>
+                    <span>Voir →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>ADVENTISTE KASENGA</h3>
+                <p>Une communauté de foi et d'espérance, engagée à suivre Jésus-Christ et à servir notre prochain.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                    <li><a href="croyances.html">Croyances</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="direct.html">En Direct</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Nous trouver</h4>
+                <p><i class="bi bi-geo-alt"></i> Kasenga, près du marché central</p>
+                <p><i class="bi bi-telephone"></i> +243 123 456 789</p>
+                <p><i class="bi bi-envelope"></i> eglise@adventiste.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+             <p>© 2026 Église Adventiste Kasenga | UTC-uvira | Hub-Tech DRC version 2.0</p>
+        </div>
+    </div>
+</footer>
+
+<!-- CHATBOT -->
+<div id="chatbot-icon" class="chatbot-icon">
+    <i class="bi bi-chat-dots-fill"></i>
+    <span class="chatbot-pulse"></span>
+</div>
+
+<div id="chatbot-window" class="chatbot-window">
+    <div class="chatbot-header">
+        <div class="chatbot-header-info">
+            <i class="bi bi-cross"></i>
+            <span>Assistant Adventiste</span>
+        </div>
+        <button id="close-chat"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+        <div class="bot-message">
+            <i class="bi bi-chat-heart"></i>
+            <span>Bonjour et que Dieu vous bénisse ! 🙏 Comment puis-je vous aider ?</span>
+        </div>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatbot-input" placeholder="Écrivez votre message...">
+        <button id="chatbot-send">
+            <i class="bi bi-send"></i>
+        </button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
