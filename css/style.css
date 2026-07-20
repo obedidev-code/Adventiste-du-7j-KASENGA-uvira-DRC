@@ -11,10 +11,12 @@
 
 body {
     font-family: 'Inter', 'Times New Roman', sans-serif;
-    background-color: #FEF9E6;
+    background-color: #044481db;
     color: #1A2E25;
     line-height: 1.6;
     overflow-x: hidden;
+    display: flex;
+    gap: 0px;
 }
 
 .container {
@@ -59,11 +61,11 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 15.1%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(15, 76, 58, 0.95);
+    background:#044481db;
     backdrop-filter: blur(10px);
     color: white;
     padding: 15px 40px;
@@ -164,7 +166,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(15,76,58,0.85), rgba(0,0,0,0.7));
+    background: linear-gradient(135deg, #044481db, rgba(0,0,0,0.7));
 }
 
 .hero-content {
@@ -842,6 +844,9 @@ body {
     .about-content h2 {
         font-size: 1.8rem;
     }
+    .marge{
+        width: 17%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -917,6 +922,9 @@ body {
     
     .newsletter-form input {
         width: 100%;
+    }
+    .ajout {
+        width: 17%;
     }
 }
 
@@ -2317,4 +2325,12 @@ body {
     .audio-card {
         width: 100%;
     }
+}
+
+
+.marge img{
+    width: 100px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 10% 25% 0 25%;
 }

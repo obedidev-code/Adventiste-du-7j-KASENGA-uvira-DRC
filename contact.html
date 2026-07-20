@@ -1,207 +1,1054 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Contact - Église Adventiste Kasenga</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="font/bootstrap-icons.css">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #f4f7fc;
+            color: #1e1e2a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           WRAPPER PRINCIPAL AVEC SIDEBAR DROITE
+           ============================================================ */
+        .main-wrapper {
+            display: flex;
+            gap: 0;
+            min-height: 100vh;
+        }
+
+        .content-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* ============================================================
+           SIDEBAR DROITE (fond bleu avec logo Adventiste)
+           ============================================================ */
+        .sidebar-right {
+            width: 240px;
+            background: linear-gradient(180deg, #0a2a4a 0%, #1a4b7a 50%, #0a2a4a 100%);
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            border-left: 3px solid #B8900C;
+        }
+
+        .sidebar-logo {
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .sidebar-logo .cross-icon {
+            font-size: 3.5rem;
+            color: #B8900C;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-logo h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .sidebar-logo h2 span {
+            color: #B8900C;
+        }
+
+        .sidebar-logo .subtitle {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            letter-spacing: 3px;
+            margin-top: 0.3rem;
+        }
+
+        .sidebar-divider {
+            width: 60px;
+            height: 2px;
+            background: #B8900C;
+            margin: 1.5rem auto;
+        }
+
+        .sidebar-verse {
+            font-size: 0.85rem;
+            font-style: italic;
+            opacity: 0.9;
+            line-height: 1.6;
+            padding: 0 0.5rem;
+        }
+
+        .sidebar-verse .verse-ref {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            color: #B8900C;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .sidebar-btn {
+            background: #B8900C;
+            color: #0a2a4a;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: 0.2s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-btn:hover {
+            background: #d4a815;
+        }
+
+        .sidebar-contact {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .sidebar-contact i {
+            color: #B8900C;
+            margin-right: 6px;
+        }
+
+        .sidebar-contact p {
+            margin-bottom: 0.3rem;
+        }
+
+        /* ============================================================
+           HEADER / NAVBAR
+           ============================================================ */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            background: white;
+            border-bottom: 2px solid #e9edf2;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #0c2d4b;
+        }
+        .logo i {
+            font-size: 1.8rem;
+            color: #1a4b7a;
+        }
+        .logo span {
+            font-weight: 300;
+            margin-right: 4px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #1f3f5c;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.15s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+        .nav a:hover {
+            border-bottom-color: #1a4b7a;
+            color: #0a2840;
+        }
+        .nav a.active {
+            border-bottom-color: #B8900C;
+            color: #0a2840;
+        }
+
+        .btn-join {
+            background: #1a4b7a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn-join:hover {
+            background: #0f3a60;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #1a3f5c;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           PAGE HEADER (Bannière de la page)
+           ============================================================ */
+        .page-header {
+            background: linear-gradient(145deg, #eef3f9 0%, #dce6f0 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid #cddae8;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0c2d4b;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header h1 span {
+            color: #B8900C;
+        }
+
+        .page-header .breadcrumb {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #1f4668;
+        }
+
+        .page-header .breadcrumb a {
+            color: #1a4b7a;
+            text-decoration: none;
+        }
+
+        .page-header .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           SECTION CONTACT (formulaire + infos)
+           ============================================================ */
+        .contact-section {
+            padding: 3rem 0;
+            background: white;
+            border-bottom: 2px solid #e9edf2;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            color: #0c2d4b;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info h2 span {
+            color: #B8900C;
+        }
+
+        .contact-info > p {
+            color: #2d445d;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-details .detail-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1rem;
+            border: 2px solid #eef3f8;
+            background: #f9fbfd;
+            transition: 0.2s;
+        }
+
+        .contact-details .detail-item:hover {
+            border-color: #1a4b7a;
+        }
+
+        .contact-details .detail-item .icon {
+            font-size: 1.5rem;
+            color: #B8900C;
+            min-width: 40px;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .contact-details .detail-item .text h4 {
+            font-size: 1rem;
+            color: #0a2840;
+        }
+
+        .contact-details .detail-item .text p {
+            color: #3d5e7a;
+            font-size: 0.95rem;
+        }
+
+        .contact-details .detail-item .text a {
+            color: #1a4b7a;
+            text-decoration: none;
+        }
+
+        .contact-details .detail-item .text a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #eaf1fa;
+            color: #1a4b7a;
+            font-size: 1.4rem;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .contact-social a:hover {
+            background: #1a4b7a;
+            color: white;
+            border-color: #1a4b7a;
+        }
+
+        /* Formulaire */
+        .contact-form {
+            background: #f5f8fc;
+            padding: 2rem;
+            border: 2px solid #eef3f8;
+        }
+
+        .contact-form h3 {
+            font-size: 1.4rem;
+            color: #0c2d4b;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form .form-sub {
+            color: #3d5e7a;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            color: #0a2840;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #c8d6e5;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: 0.15s;
+            background: white;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: #1a4b7a;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn-submit {
+            background: #1a4b7a;
+            color: white;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-form .btn-submit:hover {
+            background: #0f3a60;
+        }
+
+        /* ============================================================
+           SECTION MAP (localisation)
+           ============================================================ */
+        .map-section {
+            padding: 3rem 0;
+            background: #f5f8fc;
+            border-bottom: 2px solid #e9edf2;
+        }
+
+        .map-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .map-container {
+            background: #0a2a4a;
+            height: 300px;
+            border: 2px solid #1a4b7a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .map-container i {
+            font-size: 3rem;
+            color: #B8900C;
+            margin-bottom: 1rem;
+        }
+
+        .map-container h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .map-container p {
+            opacity: 0.7;
+        }
+
+        .map-info h2 {
+            font-size: 2rem;
+            color: #0c2d4b;
+            margin-bottom: 1rem;
+        }
+
+        .map-info h2 span {
+            color: #B8900C;
+        }
+
+        .map-info p {
+            color: #2d445d;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .map-info .map-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .map-info .map-details .map-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #eef3f8;
+        }
+
+        .map-info .map-details .map-item i {
+            color: #B8900C;
+            font-size: 1.2rem;
+        }
+
+        .map-info .map-details .map-item span {
+            font-weight: 500;
+            color: #0a2840;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           SECTION HORAIRES
+           ============================================================ */
+        .schedule-contact-section {
+            padding: 3rem 0;
+            background: white;
+            border-bottom: 2px solid #e9edf2;
+        }
+
+        .schedule-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .schedule-contact-card {
+            padding: 2rem 1.5rem;
+            border: 2px solid #eef3f8;
+            background: #f9fbfd;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .schedule-contact-card:hover {
+            border-color: #1a4b7a;
+        }
+
+        .schedule-contact-card .icon {
+            font-size: 2rem;
+            color: #B8900C;
+            margin-bottom: 0.8rem;
+        }
+
+        .schedule-contact-card h4 {
+            font-size: 1.1rem;
+            color: #0a2840;
+            margin-bottom: 0.3rem;
+        }
+
+        .schedule-contact-card p {
+            color: #2d445d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .schedule-contact-card .time {
+            font-weight: 700;
+            color: #1a4b7a;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: #eef3f9;
+            padding: 2.5rem 0 1.5rem;
+            border-top: 2px solid #ccdae8;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+        }
+        .footer-about h3 {
+            color: #0c2d4b;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .footer-about p {
+            color: #1f3f5c;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 1.4rem;
+        }
+        .footer-social a {
+            color: #1f4668;
+            transition: 0.15s;
+        }
+        .footer-social a:hover {
+            color: #0c2d4b;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: #0c2d4b;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.4rem;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #1f3f5c;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            color: #0a2840;
+            text-decoration: underline;
+        }
+        .footer-contact p {
+            color: #1f3f5c;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+        .footer-contact i {
+            width: 24px;
+            color: #1a4b7a;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            border-top: 2px solid #cad8ea;
+            font-size: 0.9rem;
+            color: #3e5f7a;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .sidebar-right {
+                display: none;
+            }
+            .main-wrapper {
+                flex-direction: column;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .map-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .schedule-contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+                padding: 1rem 0 0.5rem;
+                border-top: 2px solid #e9edf2;
+            }
+            .nav.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .schedule-contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 0.75rem 1rem;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .logo i {
+                font-size: 1.4rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-form .btn-submit {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .contact-details .detail-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .contact-social {
+                justify-content: center;
+            }
+            .map-container {
+                height: 200px;
+            }
+            .map-info .map-details {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<header class="header">
-    <div class="logo">
-        <i class="bi bi-cross"></i>
-        <span>ADVENTISTE</span> KASENGA
-    </div>
-    <nav class="nav" id="nav">
-        <a href="index.html">Accueil</a>
-        <a href="a-propos.html">À propos</a>
-        <a href="croyances.html">Croyances</a>
-        <a href="evenements.html">Événements</a>
-        <a href="direct.html">En Direct</a>
-        <a href="chorales.html">Chorales</a>
-        <a href="contact.html">Contact</a>
-        <button class="btn-join" onclick="window.location.href='contact.html'">
-            <i class="bi bi-people-fill"></i> Rejoindre
-        </button>
-    </nav>
-    <div class="menu-toggle" id="menu-toggle">
-        <i class="bi bi-list"></i>
-    </div>
-</header>
+    <!-- WRAPPER PRINCIPAL AVEC SIDEBAR DROITE -->
+    <div class="main-wrapper">
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-    <div class="page-hero-overlay"></div>
-    <div class="page-hero-content">
-        <h1>Contactez-nous</h1>
-        <p>Nous sommes là pour vous répondre</p>
-    </div>
-</section>
+        <!-- CONTENU PRINCIPAL (GAUCHE) -->
+        <div class="content-left">
 
-<!-- CONTACT INFO -->
-<section class="contact-info">
-    <div class="container">
-        <div class="contact-grid">
-            <div class="contact-card">
-                <i class="bi bi-geo-alt"></i>
-                <h3>Notre adresse</h3>
-                <p>Kasenga, près du marché central<br>Avenue Kasavubu</p>
-            </div>
-            <div class="contact-card">
-                <i class="bi bi-telephone"></i>
-                <h3>Téléphone</h3>
-                <p>+243 827 210 152</p>
-                <p>+243 827 210 152</p>
-            </div>
-            <div class="contact-card">
-                <i class="bi bi-envelope"></i>
-                <h3>Email</h3>
-                <p>eglise@adventiste.org</p>
-                <p>pasteur@adventiste.org</p>
-            </div>
-            <div class="contact-card">
-                <i class="bi bi-clock"></i>
-                <h3>Horaires d'ouverture</h3>
-                <p>Lundi - Vendredi: 9h - 17h</p>
-                <p>Samedi: 8h - 14h</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FORMULAIRE DE CONTACT -->
-<section class="contact-form-section">
-    <div class="container">
-        <div class="form-container">
-            <div class="form-text">
-                <span class="section-tag">Écrivez-nous</span>
-                <h2>Envoyez-nous un message</h2>
-                <p>Que vous ayez une question, une demande de prière ou que vous souhaitiez simplement nous connaître, nous sommes à votre écoute.</p>
-                <div class="form-social">
-                    <a href="#"><i class="bi bi-facebook"></i> Facebook</a>
-                    <a href="#"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-                    <a href="#"><i class="bi bi-youtube"></i> YouTube</a>
+            <!-- HEADER / NAVBAR -->
+            <header class="header">
+                <div class="logo">
+                    <i class="fas fa-cross"></i>
+                    <span>ADVENTISTE</span> KASENGA
                 </div>
+                <nav class="nav" id="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="a-propos.html">À propos</a>
+                    <a href="croyances.html">Croyances</a>
+                    <a href="evenements.html">Événements</a>
+                    <a href="direct.html">En Direct</a>
+                    <a href="chorales.html">Chorales</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <button class="btn-join" onclick="window.location.href='contact.html'">
+                        <i class="fas fa-users"></i> Rejoindre
+                    </button>
+                </nav>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </header>
+
+            <!-- PAGE HEADER -->
+            <section class="page-header">
+                <h1>Contactez-<span>nous</span></h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Accueil</a> &gt; Contact
+                </div>
+            </section>
+
+            <!-- SECTION CONTACT (formulaire + infos) -->
+            <section class="contact-section">
+                <div class="container">
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <h2>Entrons en <span>contact</span></h2>
+                            <p>Nous serions ravis de vous entendre ! Que vous ayez des questions, des demandes de prière ou que vous souhaitiez simplement en savoir plus sur notre communauté, n'hésitez pas à nous contacter.</p>
+                            <div class="contact-details">
+                                <div class="detail-item">
+                                    <div class="icon"><i class="fas fa-map-pin"></i></div>
+                                    <div class="text">
+                                        <h4>Adresse</h4>
+                                        <p>Kasenga, près du marché central<br>Uvira, République Démocratique du Congo</p>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="icon"><i class="fas fa-phone"></i></div>
+                                    <div class="text">
+                                        <h4>Téléphone</h4>
+                                        <p><a href="tel:+243827210152">+243 827 210 152</a></p>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                                    <div class="text">
+                                        <h4>Email</h4>
+                                        <p><a href="mailto:eglise@adventiste.org">eglise@adventiste.org</a></p>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="icon"><i class="fas fa-clock"></i></div>
+                                    <div class="text">
+                                        <h4>Horaires d'ouverture</h4>
+                                        <p>Lundi - Vendredi : 8h00 - 17h00<br>Samedi : 8h00 - 14h00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <h3><i class="fas fa-paper-plane" style="color:#1a4b7a; margin-right:8px;"></i> Envoyez-nous un message</h3>
+                            <p class="form-sub">Nous vous répondrons dans les plus brefs délais.</p>
+                            <form id="contactForm">
+                                <label for="contactName">Votre nom complet</label>
+                                <input type="text" id="contactName" placeholder="Entrez votre nom" required>
+
+                                <label for="contactEmail">Votre email</label>
+                                <input type="email" id="contactEmail" placeholder="votre@email.com" required>
+
+                                <label for="contactPhone">Téléphone (optionnel)</label>
+                                <input type="tel" id="contactPhone" placeholder="+243 82 123 4567">
+
+                                <label for="contactSubject">Sujet</label>
+                                <select id="contactSubject">
+                                    <option value="general">Demande générale</option>
+                                    <option value="priere">Demande de prière</option>
+                                    <option value="visite">Visite pastorale</option>
+                                    <option value="bapteme">Baptême</option>
+                                    <option value="mariage">Mariage</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+
+                                <label for="contactMessage">Votre message</label>
+                                <textarea id="contactMessage" placeholder="Décrivez votre demande..." required></textarea>
+
+                                <button type="submit" class="btn-submit">
+                                    <i class="fas fa-paper-plane"></i> Envoyer le message
+                                </button>
+                            </form>
+                            <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #3d5e7a;">
+                                <i class="fas fa-lock" style="margin-right: 4px;"></i> Vos informations restent confidentielles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION HORAIRES -->
+            <section class="schedule-contact-section">
+                <div class="container">
+                    <div class="section-header" style="text-align:center; margin-bottom: 2rem;">
+                        <span class="section-tag">Horaires</span>
+                        <h2 style="font-size:2.2rem; font-weight:600; color:#0c2d4b;">Nos <span style="color:#B8900C;">activités</span></h2>
+                    </div>
+                    <div class="schedule-contact-grid">
+                        <div class="schedule-contact-card">
+                            <div class="icon"><i class="fas fa-church"></i></div>
+                            <h4>Culte du Sabbat</h4>
+                            <p>Samedi</p>
+                            <span class="time">9h00 - 13h00</span>
+                        </div>
+                        <div class="schedule-contact-card">
+                            <div class="icon"><i class="fas fa-bible"></i></div>
+                            <h4>Étude Biblique</h4>
+                            <p>Mercredi</p>
+                            <span class="time">17h00 - 19h00</span>
+                        </div>
+                        <div class="schedule-contact-card">
+                            <div class="icon"><i class="fas fa-hands-praying"></i></div>
+                            <h4>Veillée de Prière</h4>
+                            <p>Vendredi</p>
+                            <span class="time">19h00 - 21h00</span>
+                        </div>
+                        <div class="schedule-contact-card">
+                            <div class="icon"><i class="fas fa-users"></i></div>
+                            <h4>Jeunesse Adventiste</h4>
+                            <p>Samedi</p>
+                            <span class="time">14h00 - 16h00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION MAP -->
+            <section class="map-section">
+                <div class="container">
+                    <div class="map-wrapper">
+                        <div class="map-container">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <h4>Église Adventiste Kasenga</h4>
+                            <p>Kasenga, Uvira - RDC</p>
+                            <p style="font-size:0.8rem; opacity:0.5; margin-top:0.5rem;">Cliquez pour ouvrir dans Google Maps</p>
+                        </div>
+                        <div class="map-info">
+                            <h2>Comment <span>nous trouver</span></h2>
+                            <p>Nous sommes situés à Kasenga, près du marché central. L'église est facilement accessible en voiture ou à pied depuis le centre-ville d'Uvira.</p>
+                            <div class="map-details">
+                                <div class="map-item">
+                                    <i class="fas fa-map-pin"></i>
+                                    <span>Kasenga, Uvira</span>
+                                </div>
+                                <div class="map-item">
+                                    <i class="fas fa-road"></i>
+                                    <span>Près du marché central</span>
+                                </div>
+                                <div class="map-item">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Transport en commun disponible</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <h3>ADVENTISTE KASENGA</h3>
+                            <p>Une communauté de foi et d'espérance, engagée à suivre Jésus-Christ et à servir notre prochain.</p>
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-links">
+                            <h4>Liens rapides</h4>
+                            <ul>
+                                <li><a href="index.html">Accueil</a></li>
+                                <li><a href="a-propos.html">À propos</a></li>
+                                <li><a href="croyances.html">Croyances</a></li>
+                                <li><a href="evenements.html">Événements</a></li>
+                                <li><a href="direct.html">En Direct</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-contact">
+                            <h4>Nous trouver</h4>
+                            <p><i class="fas fa-map-pin"></i> Kasenga, près du marché central</p>
+                            <p><i class="fas fa-phone"></i> +243 827 210 152</p>
+                            <p><i class="fas fa-envelope"></i> eglise@adventiste.org</p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>© 2026 Église Adventiste Kasenga | UTC-uvira | Hub-Tech DRC version 2.0</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- FIN CONTENT-LEFT -->
+
+        <!-- SIDEBAR DROITE -->
+        <aside class="sidebar-right">
+            <div class="sidebar-logo">
+                <i class="fas fa-cross cross-icon"></i>
+                <h2>ADVENTISTE <br><span>KASENGA</span></h2>
+                <p class="subtitle">Uvira · RDC</p>
             </div>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <input type="text" placeholder="Votre nom complet" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Votre email" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Votre numéro WhatsApp">
-                </div>
-                <div class="form-group">
-                    <select>
-                        <option>Sujet de votre message</option>
-                        <option>Informations sur l'église</option>
-                        <option>Demande de prière</option>
-                        <option>Faire un don</option>
-                        <option>Devenir membre</option>
-                        <option>Autre</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <textarea rows="5" placeholder="Votre message..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Envoyer le message <i class="bi bi-send"></i></button>
-            </form>
-        </div>
-    </div>
-</section>
 
-<!-- CARTE GOOGLE MAPS -->
-<section class="map">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Nous trouver</span>
-            <h2>Notre localisation</h2>
-        </div>
-        <div class="map-container">
-            <!-- Remplacez le lien par votre emplacement réel -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15923.456789!2d26.123456!3d-8.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMDAnMzEuMyJTIDI2wrAwMCcwMC4wIkU!5e0!3m2!1sfr!2scd!4v1700000000000!5m2!1sfr!2scd" 
-                width="100%" 
-                height="400" 
-                style="border:0; border-radius: 20px;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-    </div>
-</section>
+            <div class="sidebar-divider"></div>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-about">
-                <h3>ADVENTISTE KASENGA</h3>
-                <p>Une communauté de foi et d'espérance, engagée à suivre Jésus-Christ et à servir notre prochain.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#"><i class="bi bi-youtube"></i></a>
-                    <a href="#"><i class="bi bi-instagram"></i></a>
-                </div>
+            <div class="sidebar-verse">
+                "Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse pas, mais qu'il ait la vie éternelle."
+                <span class="verse-ref">— Jean 3:16</span>
             </div>
-            <div class="footer-links">
-                <h4>Liens rapides</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="croyances.html">Croyances</a></li>
-                    <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="direct.html">En Direct</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+
+            <button class="sidebar-btn" onclick="window.location.href='contact.html'">
+                <i class="fas fa-hands-praying"></i> Nous rejoindre
+            </button>
+
+            <div class="sidebar-divider"></div>
+
+            <div style="width:100%; text-align:center; font-size:0.8rem; opacity:0.8; line-height:1.8;">
+                <p><i class="fas fa-clock" style="color:#B8900C;"></i> Cultes: Samedi 9h</p>
+                <p><i class="fas fa-map-pin" style="color:#B8900C;"></i> Kasenga, Uvira</p>
             </div>
-            <div class="footer-contact">
-                <h4>Nous trouver</h4>
-                <p><i class="bi bi-geo-alt"></i> Kakombe, avenue kasavubu</p>
-                <p><i class="bi bi-telephone"></i> +243 827 210 152</p>
-                <p><i class="bi bi-envelope"></i> eglise@adventiste.org</p>
+
+            <div class="sidebar-contact">
+                <p><i class="fas fa-phone"></i> +243 827 210 152</p>
+                <p><i class="fas fa-envelope"></i> eglise@adventiste.org</p>
+                <p style="margin-top:0.5rem; font-size:0.65rem; opacity:0.5;">© 2026 · Tous droits réservés</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Église Adventiste Kasenga | Hub-Tech DRC version 2.0</p>
-        </div>
-    </div>
-</footer>
+        </aside>
 
-<!-- CHATBOT -->
-<div id="chatbot-icon" class="chatbot-icon">
-    <i class="bi bi-chat-dots-fill"></i>
-    <span class="chatbot-pulse"></span>
-</div>
+    </div>
+    <!-- FIN MAIN-WRAPPER -->
 
-<div id="chatbot-window" class="chatbot-window">
-    <div class="chatbot-header">
-        <div class="chatbot-header-info">
-            <i class="bi bi-cross"></i>
-            <span>Assistant Adventiste</span>
-        </div>
-        <button id="close-chat"><i class="bi bi-x-lg"></i></button>
-    </div>
-    <div class="chatbot-messages" id="chatbot-messages">
-        <div class="bot-message">
-            <i class="bi bi-chat-heart"></i>
-            <span>Bonjour et que Dieu vous bénisse ! 🙏 Comment puis-je vous aider ?</span>
-        </div>
-    </div>
-    <div class="chatbot-input">
-        <input type="text" id="chatbot-input" placeholder="Écrivez votre message...">
-        <button id="chatbot-send">
-            <i class="bi bi-send"></i>
-        </button>
-    </div>
-</div>
+    <script>
+        // Menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+            });
+        }
 
-<script src="js/script.js"></script>
+        // Gestion du formulaire de contact
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('contactName').value;
+                alert(`Merci ${name} ! Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais. 🙏`);
+                contactForm.reset();
+            });
+        }
+    </script>
+
 </body>
 </html>

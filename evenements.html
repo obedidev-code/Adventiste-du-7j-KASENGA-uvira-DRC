@@ -1,242 +1,1257 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Événements - Église Adventiste Kasenga</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="font/bootstrap-icons.css">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #f4f7fc;
+            color: #1e1e2a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           WRAPPER PRINCIPAL AVEC SIDEBAR DROITE
+           ============================================================ */
+        .main-wrapper {
+            display: flex;
+            gap: 0;
+            min-height: 100vh;
+        }
+
+        .content-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* ============================================================
+           SIDEBAR DROITE (fond bleu avec logo Adventiste)
+           ============================================================ */
+        .sidebar-right {
+            width: 240px;
+            background: linear-gradient(180deg, #0a2a4a 0%, #1a4b7a 50%, #0a2a4a 100%);
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            border-left: 3px solid #B8900C;
+        }
+
+        .sidebar-logo {
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .sidebar-logo .cross-icon {
+            font-size: 3.5rem;
+            color: #B8900C;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-logo h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .sidebar-logo h2 span {
+            color: #B8900C;
+        }
+
+        .sidebar-logo .subtitle {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            letter-spacing: 3px;
+            margin-top: 0.3rem;
+        }
+
+        .sidebar-divider {
+            width: 60px;
+            height: 2px;
+            background: #B8900C;
+            margin: 1.5rem auto;
+        }
+
+        .sidebar-verse {
+            font-size: 0.85rem;
+            font-style: italic;
+            opacity: 0.9;
+            line-height: 1.6;
+            padding: 0 0.5rem;
+        }
+
+        .sidebar-verse .verse-ref {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            color: #B8900C;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .sidebar-btn {
+            background: #B8900C;
+            color: #0a2a4a;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: 0.2s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-btn:hover {
+            background: #d4a815;
+        }
+
+        .sidebar-contact {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .sidebar-contact i {
+            color: #B8900C;
+            margin-right: 6px;
+        }
+
+        .sidebar-contact p {
+            margin-bottom: 0.3rem;
+        }
+
+        /* ============================================================
+           HEADER / NAVBAR
+           ============================================================ */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            background: white;
+            border-bottom: 2px solid #e9edf2;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #0c2d4b;
+        }
+        .logo i {
+            font-size: 1.8rem;
+            color: #1a4b7a;
+        }
+        .logo span {
+            font-weight: 300;
+            margin-right: 4px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #1f3f5c;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.15s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+        .nav a:hover {
+            border-bottom-color: #1a4b7a;
+            color: #0a2840;
+        }
+        .nav a.active {
+            border-bottom-color: #B8900C;
+            color: #0a2840;
+        }
+
+        .btn-join {
+            background: #1a4b7a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn-join:hover {
+            background: #0f3a60;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #1a3f5c;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           PAGE HEADER (Bannière de la page)
+           ============================================================ */
+        .page-header {
+            background: linear-gradient(145deg, #eef3f9 0%, #dce6f0 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid #cddae8;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0c2d4b;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header h1 span {
+            color: #B8900C;
+        }
+
+        .page-header .breadcrumb {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #1f4668;
+        }
+
+        .page-header .breadcrumb a {
+            color: #1a4b7a;
+            text-decoration: none;
+        }
+
+        .page-header .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           SECTION FILTRES / RECHERCHE
+           ============================================================ */
+        .filters-section {
+            padding: 2rem 0;
+            background: white;
+            border-bottom: 2px solid #e9edf2;
+        }
+
+        .filters-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .filters-wrapper .filter-label {
+            font-weight: 600;
+            color: #0a2840;
+            margin-right: 0.5rem;
+        }
+
+        .filters-wrapper select,
+        .filters-wrapper input {
+            padding: 0.5rem 1rem;
+            border: 2px solid #c8d6e5;
+            font-size: 0.95rem;
+            background: white;
+            outline: none;
+            transition: 0.15s;
+        }
+
+        .filters-wrapper select:focus,
+        .filters-wrapper input:focus {
+            border-color: #1a4b7a;
+        }
+
+        .filters-wrapper .search-box {
+            display: flex;
+            gap: 0;
+        }
+
+        .filters-wrapper .search-box input {
+            border-right: none;
+            min-width: 200px;
+        }
+
+        .filters-wrapper .search-box button {
+            background: #1a4b7a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .filters-wrapper .search-box button:hover {
+            background: #0f3a60;
+        }
+
+        /* ============================================================
+           SECTION ÉVÉNEMENTS À VENIR
+           ============================================================ */
+        .events-section {
+            padding: 3rem 0;
+            background: #f5f8fc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #eaf1fa;
+            padding: 0.2rem 1.5rem;
+            font-weight: 600;
+            color: #1a4b7a;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0c2d4b;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header h2 span {
+            color: #B8900C;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            overflow: hidden;
+            border: 2px solid #eef3f8;
+            transition: 0.2s;
+        }
+
+        .event-card:hover {
+            border-color: #1a4b7a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+
+        .event-card .event-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card .event-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .event-card .event-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #B8900C;
+            color: #0a2a4a;
+            padding: 0.3rem 1rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-card .event-badge.passed {
+            background: #6c757d;
+            color: white;
+        }
+
+        .event-card .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-card .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: #3d5e7a;
+        }
+
+        .event-card .event-meta i {
+            color: #1a4b7a;
+            width: 20px;
+        }
+
+        .event-card .event-content h3 {
+            font-size: 1.3rem;
+            color: #0a2840;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-card .event-content p {
+            color: #2d445d;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .event-card .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eef3f8;
+        }
+
+        .event-card .event-footer .btn-event {
+            background: transparent;
+            border: 2px solid #1a4b7a;
+            color: #1a4b7a;
+            padding: 0.4rem 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .event-card .event-footer .btn-event:hover {
+            background: #1a4b7a;
+            color: white;
+        }
+
+        .event-card .event-footer .event-category {
+            font-size: 0.8rem;
+            background: #eaf1fa;
+            padding: 0.2rem 0.8rem;
+            color: #1a4b7a;
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           SECTION ÉVÉNEMENTS PASSÉS (archive)
+           ============================================================ */
+        .archive-section {
+            padding: 3rem 0;
+            background: white;
+            border-top: 2px solid #e9edf2;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .archive-card {
+            display: flex;
+            gap: 1.2rem;
+            padding: 1.2rem;
+            border: 2px solid #eef3f8;
+            background: #f9fbfd;
+            transition: 0.2s;
+            align-items: center;
+        }
+
+        .archive-card:hover {
+            border-color: #1a4b7a;
+        }
+
+        .archive-card .archive-date {
+            min-width: 60px;
+            text-align: center;
+            background: #1a4b7a;
+            color: white;
+            padding: 0.5rem 0.8rem;
+        }
+
+        .archive-card .archive-date .day {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .archive-card .archive-date .month {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .archive-card .archive-info h4 {
+            font-size: 1rem;
+            color: #0a2840;
+            margin-bottom: 0.2rem;
+        }
+
+        .archive-card .archive-info p {
+            font-size: 0.85rem;
+            color: #3d5e7a;
+        }
+
+        .archive-card .archive-info .archive-category {
+            font-size: 0.7rem;
+            color: #B8900C;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================================
+           SECTION AGENDA / CALENDRIER (simplifié)
+           ============================================================ */
+        .calendar-section {
+            padding: 3rem 0;
+            background: #f5f8fc;
+            border-top: 2px solid #e9edf2;
+        }
+
+        .calendar-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .calendar-list .calendar-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 2px solid #eef3f8;
+        }
+
+        .calendar-list .calendar-item:last-child {
+            border-bottom: none;
+        }
+
+        .calendar-list .calendar-item .cal-date {
+            min-width: 50px;
+            text-align: center;
+            background: #1a4b7a;
+            color: white;
+            padding: 0.3rem 0.5rem;
+        }
+
+        .calendar-list .calendar-item .cal-date .cal-day {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .calendar-list .calendar-item .cal-date .cal-month {
+            display: block;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .calendar-list .calendar-item .cal-info h4 {
+            font-size: 1rem;
+            color: #0a2840;
+        }
+
+        .calendar-list .calendar-item .cal-info p {
+            font-size: 0.85rem;
+            color: #3d5e7a;
+        }
+
+        .calendar-info {
+            background: white;
+            padding: 2rem;
+            border: 2px solid #eef3f8;
+        }
+
+        .calendar-info h3 {
+            font-size: 1.4rem;
+            color: #0c2d4b;
+            margin-bottom: 0.8rem;
+        }
+
+        .calendar-info h3 span {
+            color: #B8900C;
+        }
+
+        .calendar-info p {
+            color: #2d445d;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .calendar-info .btn-primary {
+            background: #1a4b7a;
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calendar-info .btn-primary:hover {
+            background: #0f3a60;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: #eef3f9;
+            padding: 2.5rem 0 1.5rem;
+            border-top: 2px solid #ccdae8;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+        }
+        .footer-about h3 {
+            color: #0c2d4b;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .footer-about p {
+            color: #1f3f5c;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 1.4rem;
+        }
+        .footer-social a {
+            color: #1f4668;
+            transition: 0.15s;
+        }
+        .footer-social a:hover {
+            color: #0c2d4b;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: #0c2d4b;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.4rem;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #1f3f5c;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            color: #0a2840;
+            text-decoration: underline;
+        }
+        .footer-contact p {
+            color: #1f3f5c;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+        .footer-contact i {
+            width: 24px;
+            color: #1a4b7a;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            border-top: 2px solid #cad8ea;
+            font-size: 0.9rem;
+            color: #3e5f7a;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .sidebar-right {
+                display: none;
+            }
+            .main-wrapper {
+                flex-direction: column;
+            }
+            .calendar-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .filters-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filters-wrapper .search-box input {
+                min-width: auto;
+            }
+            .filters-wrapper .search-box {
+                width: 100%;
+            }
+            .filters-wrapper .search-box input {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+                padding: 1rem 0 0.5rem;
+                border-top: 2px solid #e9edf2;
+            }
+            .nav.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .archive-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 0.75rem 1rem;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .logo i {
+                font-size: 1.4rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .calendar-list .calendar-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .event-card .event-image img {
+                height: 160px;
+            }
+            .filters-wrapper select,
+            .filters-wrapper input {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<header class="header">
-    <div class="logo">
-        <i class="bi bi-cross"></i>
-        <span>ADVENTISTE</span> KASENGA
-    </div>
-    <nav class="nav" id="nav">
-        <a href="index.html">Accueil</a>
-        <a href="a-propos.html">À propos</a>
-        <a href="croyances.html">Croyances</a>
-        <a href="evenements.html">Événements</a>
-        <a href="direct.html">En Direct</a>
-        <a href="chorales.html">Chorales</a>
-        <a href="contact.html">Contact</a>
-        <button class="btn-join" onclick="window.location.href='contact.html'">
-            <i class="bi bi-people-fill"></i> Rejoindre
-        </button>
-    </nav>
-    <div class="menu-toggle" id="menu-toggle">
-        <i class="bi bi-list"></i>
-    </div>
-</header>
+    <!-- WRAPPER PRINCIPAL AVEC SIDEBAR DROITE -->
+    <div class="main-wrapper">
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-    <div class="page-hero-overlay"></div>
-    <div class="page-hero-content">
-        <h1>Événements</h1>
-        <p>Vivez des moments forts avec notre communauté</p>
-    </div>
-</section>
+        <!-- CONTENU PRINCIPAL (GAUCHE) -->
+        <div class="content-left">
 
-<!-- ÉVÉNEMENTS À VENIR -->
-<section class="upcoming-events">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">À ne pas manquer</span>
-            <h2>Événements à venir</h2>
-        </div>
-        <div class="events-full-grid">
-            <div class="event-full-card">
-                <div class="event-date-large">
-                    <span class="day">17</span>
-                    <span class="month">SEPT</span>
+            <!-- HEADER / NAVBAR -->
+            <header class="header">
+                <div class="logo">
+                    <i class="fas fa-cross"></i>
+                    <span>ADVENTISTE</span> KASENGA
                 </div>
-                <div class="event-details">
-                    <h3>Sabbat de Louange</h3>
-                    <p><i class="bi bi-clock"></i> Samedi, 10h00 - 14h00</p>
-                    <p><i class="bi bi-geo-alt"></i> Église Adventiste Kasenga</p>
-                    <p><i class="bi bi-person"></i> Pasteur Antipa Balume Brave</p>
-                    <button class="btn-primary-small">Je participe →</button>
+                <nav class="nav" id="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="a-propos.html">À propos</a>
+                    <a href="croyances.html">Croyances</a>
+                    <a href="evenements.html" class="active">Événements</a>
+                    <a href="direct.html">En Direct</a>
+                    <a href="chorales.html">Chorales</a>
+                    <a href="contact.html">Contact</a>
+                    <button class="btn-join" onclick="window.location.href='contact.html'">
+                        <i class="fas fa-users"></i> Rejoindre
+                    </button>
+                </nav>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
                 </div>
-                <div class="event-image">
-                    <img src="images/mzee_precie.jpg" alt="Sabbat de Louange">
-                </div>
-            </div>
-            <div class="event-full-card">
-                <div class="event-date-large">
-                    <span class="day">12-15</span>
-                    <span class="month">DÉC</span>
-                </div>
-                <div class="event-details">
-                    <h3>Séminaire Biblique</h3>
-                    <p><i class="bi bi-clock"></i> Du 12 au 15 Décembre, 19h00</p>
-                    <p><i class="bi bi-geo-alt"></i> Salle polyvalente de l'église</p>
-                    <p><i class="bi bi-person"></i> Plusieurs intervenants</p>
-                    <button class="btn-primary-small">S'inscrire →</button>
-                </div>
-                <div class="event-image">
-                    <img src="images/aller dans le monde.jpg" alt="Séminaire Biblique">
-                </div>
-            </div>
-            <div class="event-full-card">
-                <div class="event-date-large">
-                    <span class="day">5</span>
-                    <span class="month">NOV</span>
-                </div>
-                <div class="event-details">
-                    <h3>Sortie Nature JA</h3>
-                    <p><i class="bi bi-clock"></i> samedi, Apres Sabbat</p>
-                    <p><i class="bi bi-geo-alt"></i> Forêt de Kasenga</p>
-                    <p><i class="bi bi-person"></i> Départ de l'église</p>
-                    <button class="btn-primary-small">Je rejoins →</button>
-                </div>
-                <div class="event-image">
-                    <img src="images/mzee_precie.jpg" alt="Sortie Nature">
-                </div>
-            </div>
-            <div class="event-full-card">
-                <div class="event-date-large">
-                    <span class="day">8</span>
-                    <span class="month">MARS</span>
-                </div>
-                <div class="event-details">
-                    <h3>Fete MIFEM DORCAS</h3>
-                    <p><i class="bi bi-clock"></i> 7 mars, 16h - 17h30'</p>
-                    <p><i class="bi bi-geo-alt"></i> Église Adventiste Kasenga</p>
-                    <p><i class="bi bi-person"></i> Toute la communauté</p>
-                    <button class="btn-primary-small">Je viens →</button>
-                </div>
-                <div class="event-image">
-                    <img src="images/les_seraphins.jpg" alt="Veillée de Nouvel An">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </header>
 
-<!-- CALENDRIER MENSUEL -->
-<section class="calendar">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Planifier</span>
-            <h2>Calendrier mensuel</h2>
-        </div>
-        <div class="calendar-table">
-            <div class="calendar-header">
-                <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
-            </div>
-            <div class="calendar-body">
-                <span></span><span></span><span></span><span></span><span></span><span></span>
-                <span class="calendar-day">1</span>
-                <span class="calendar-day">2</span>
-                <span class="calendar-day">3</span>
-                <span class="calendar-day">4</span>
-                <span class="calendar-day">5</span>
-                <span class="calendar-day event-day">6 <span class="event-marker">⛪</span></span>
-                <span class="calendar-day">7</span>
-                <span class="calendar-day">8</span>
-                <span class="calendar-day">9</span>
-                <span class="calendar-day">10</span>
-                <span class="calendar-day">11</span>
-                <span class="calendar-day event-day">12 <span class="event-marker">📖</span></span>
-                <span class="calendar-day">13</span>
-                <span class="calendar-day">14</span>
-                <span class="calendar-day">15</span>
-                <span class="calendar-day">16</span>
-                <span class="calendar-day">17</span>
-                <span class="calendar-day event-day">18 <span class="event-marker">⛪</span></span>
-                <span class="calendar-day">19</span>
-                <span class="calendar-day">20</span>
-                <span class="calendar-day">21</span>
-                <span class="calendar-day">22</span>
-                <span class="calendar-day">23</span>
-                <span class="calendar-day event-day">24 <span class="event-marker">⛪</span></span>
-                <span class="calendar-day">25</span>
-                <span class="calendar-day">26</span>
-                <span class="calendar-day">27</span>
-                <span class="calendar-day">28</span>
-                <span class="calendar-day">29</span>
-                <span class="calendar-day event-day">30 <span class="event-marker">⛪</span></span>
-                <span class="calendar-day">31</span>
-            </div>
-        </div>
-        <div class="calendar-legend">
-            <span><span class="legend-marker">⛪</span> Culte</span>
-            <span><span class="legend-marker">📖</span> Étude biblique</span>
-            <span><span class="legend-marker">🎉</span> Événement spécial</span>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-about">
-                <h3>ADVENTISTE KASENGA</h3>
-                <p>Une communauté de foi et d'espérance, engagée à suivre Jésus-Christ et à servir notre prochain.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#"><i class="bi bi-youtube"></i></a>
-                    <a href="#"><i class="bi bi-instagram"></i></a>
+            <!-- PAGE HEADER -->
+            <section class="page-header">
+                <h1>Nos <span>Événements</span></h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Accueil</a> &gt; Événements
                 </div>
-            </div>
-            <div class="footer-links">
-                <h4>Liens rapides</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="croyances.html">Croyances</a></li>
-                    <li><a href="evenements.html">Événements</a></li>
-                    <li><a href="direct.html">En Direct</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Nous trouver</h4>
-                <p><i class="bi bi-geo-alt"></i> Kasenga, près du marché central</p>
-                <p><i class="bi bi-telephone"></i> +243 827 210 152</p>
-                <p><i class="bi bi-envelope"></i> eglise@adventistekasenga.org</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-         <p>© 2026 Église Adventiste Kasenga | UTC-uvira | Hub-Tech DRC version 2.0</p>
-        </div>
-    </div>
-</footer>
+            </section>
 
-<!-- CHATBOT -->
-<div id="chatbot-icon" class="chatbot-icon">
-    <i class="bi bi-chat-dots-fill"></i>
-    <span class="chatbot-pulse"></span>
-</div>
+            <!-- SECTION FILTRES -->
+            <section class="filters-section">
+                <div class="container">
+                    <div class="filters-wrapper">
+                        <div>
+                            <span class="filter-label"><i class="fas fa-filter"></i> Filtrer par :</span>
+                            <select>
+                                <option value="tous">Tous les événements</option>
+                                <option value="culte">Cultes</option>
+                                <option value="jeunesse">Jeunesse</option>
+                                <option value="etude">Études bibliques</option>
+                                <option value="social">Activités sociales</option>
+                            </select>
+                            <select style="margin-left:0.5rem;">
+                                <option value="mois">Ce mois</option>
+                                <option value="semaine">Cette semaine</option>
+                                <option value="mois-prochain">Mois prochain</option>
+                            </select>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" placeholder="Rechercher un événement...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<div id="chatbot-window" class="chatbot-window">
-    <div class="chatbot-header">
-        <div class="chatbot-header-info">
-            <i class="bi bi-cross"></i>
-            <span>Assistant Adventiste</span>
-        </div>
-        <button id="close-chat"><i class="bi bi-x-lg"></i></button>
-    </div>
-    <div class="chatbot-messages" id="chatbot-messages">
-        <div class="bot-message">
-            <i class="bi bi-chat-heart"></i>
-            <span>Bonjour et que Dieu vous bénisse ! 🙏 Comment puis-je vous aider ?</span>
-        </div>
-    </div>
-    <div class="chatbot-input">
-        <input type="text" id="chatbot-input" placeholder="Écrivez votre message...">
-        <button id="chatbot-send">
-            <i class="bi bi-send"></i>
-        </button>
-    </div>
-</div>
+            <!-- SECTION ÉVÉNEMENTS À VENIR -->
+            <section class="events-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">À ne pas manquer</span>
+                        <h2>Événements <span>à venir</span></h2>
+                    </div>
+                    <div class="events-grid">
+                        <!-- Événement 1 -->
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/mzee_precie.jpg" alt="Sabbat de Louange">
+                                <span class="event-badge">À venir</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-meta">
+                                    <span><i class="fas fa-calendar"></i> 17 Septembre 2026</span>
+                                    <span><i class="fas fa-clock"></i> 8h25 - 13h00</span>
+                                    <span><i class="fas fa-map-pin"></i> Église Centrale</span>
+                                </div>
+                                <h3>Sabbat de Louange</h3>
+                                <p>Un sabbat spécial consacré à la louange et à l'adoration. Venez expérimenter la présence de Dieu à travers des chants et des témoignages puissants.</p>
+                                <div class="event-footer">
+                                    <button class="btn-event">Participer →</button>
+                                    <span class="event-category">Culte</span>
+                                </div>
+                            </div>
+                        </div>
 
-<script src="js/script.js"></script>
+                        <!-- Événement 2 -->
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/aller dans le monde.jpg" alt="Séminaire Biblique">
+                                <span class="event-badge">À venir</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-meta">
+                                    <span><i class="fas fa-calendar"></i> 15 Décembre 2026</span>
+                                    <span><i class="fas fa-clock"></i> 13h00 - 17h00</span>
+                                    <span><i class="fas fa-map-pin"></i> Salle Polyvalente</span>
+                                </div>
+                                <h3>Séminaire Biblique</h3>
+                                <p>Un séminaire approfondi sur les prophéties bibliques et leur signification pour notre temps. Avec le Pasteur Jean-Pierre Mukendi.</p>
+                                <div class="event-footer">
+                                    <button class="btn-event">S'inscrire →</button>
+                                    <span class="event-category">Étude</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Événement 3 -->
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/les_seraphins.jpg" alt="Sortie Nature JA">
+                                <span class="event-badge">À venir</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-meta">
+                                    <span><i class="fas fa-calendar"></i> 5 Novembre 2026</span>
+                                    <span><i class="fas fa-clock"></i> 8h00 - 16h00</span>
+                                    <span><i class="fas fa-map-pin"></i> Parc de la Ruzizi</span>
+                                </div>
+                                <h3>Sortie Nature JA</h3>
+                                <p>Une journée de communion avec la nature organisée par le département des Jeunes Adventistes. Au programme : randonnée, pique-nique et partage biblique.</p>
+                                <div class="event-footer">
+                                    <button class="btn-event">Rejoindre →</button>
+                                    <span class="event-category">Jeunesse</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Événement 4 -->
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/mzee_precie.jpg" alt="Campagne de Santé">
+                                <span class="event-badge">À venir</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-meta">
+                                    <span><i class="fas fa-calendar"></i> 22 Octobre 2026</span>
+                                    <span><i class="fas fa-clock"></i> 9h00 - 15h00</span>
+                                    <span><i class="fas fa-map-pin"></i> Centre Communautaire</span>
+                                </div>
+                                <h3>Campagne de Santé</h3>
+                                <p>Une journée de sensibilisation à la santé avec des dépistages gratuits, des conseils nutritionnels et des ateliers sur le bien-être selon les principes bibliques.</p>
+                                <div class="event-footer">
+                                    <button class="btn-event">Participer →</button>
+                                    <span class="event-category">Social</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Événement 5 -->
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/aller dans le monde.jpg" alt="Veillée de Prière">
+                                <span class="event-badge">À venir</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-meta">
+                                    <span><i class="fas fa-calendar"></i> 28 Octobre 2026</span>
+                                    <span><i class="fas fa-clock"></i> 19h00 - 22h00</span>
+                                    <span><i class="fas fa-map-pin"></i> Église Centrale</span>
+                                </div>
+                                <h3>Veillée de Prière</h3>
+                                <p>Une soirée de prière et d'intercession pour notre communauté, notre pays et les besoins du monde. Venez avec vos fardeaux et repartez avec la paix de Dieu.</p>
+                                <div class="event-footer">
+                                    <button class="btn-event">Participer →</button>
+                                    <span class="event-category">Culte</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Événement 6 -->
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/les_seraphins.jpg" alt="Gala de Chorales">
+                                <span class="event-badge">À venir</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-meta">
+                                    <span><i class="fas fa-calendar"></i> 12 Novembre 2026</span>
+                                    <span><i class="fas fa-clock"></i> 14h00 - 18h00</span>
+                                    <span><i class="fas fa-map-pin"></i> Église Centrale</span>
+                                </div>
+                                <h3>Gala de Chorales</h3>
+                                <p>Un grand rassemblement des chorales adventistes de la région d'Uvira. Une célébration musicale pour la gloire de Dieu.</p>
+                                <div class="event-footer">
+                                    <button class="btn-event">Participer →</button>
+                                    <span class="event-category">Musique</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION AGENDA / CALENDRIER -->
+            <section class="calendar-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">Planification</span>
+                        <h2>Agenda <span>mensuel</span></h2>
+                    </div>
+                    <div class="calendar-wrapper">
+                        <div class="calendar-list">
+                            <div class="calendar-item">
+                                <div class="cal-date">
+                                    <span class="cal-day">17</span>
+                                    <span class="cal-month">Sept</span>
+                                </div>
+                                <div class="cal-info">
+                                    <h4>Sabbat de Louange</h4>
+                                    <p><i class="fas fa-clock"></i> 8h25 - 13h00</p>
+                                </div>
+                            </div>
+                            <div class="calendar-item">
+                                <div class="cal-date">
+                                    <span class="cal-day">22</span>
+                                    <span class="cal-month">Oct</span>
+                                </div>
+                                <div class="cal-info">
+                                    <h4>Campagne de Santé</h4>
+                                    <p><i class="fas fa-clock"></i> 9h00 - 15h00</p>
+                                </div>
+                            </div>
+                            <div class="calendar-item">
+                                <div class="cal-date">
+                                    <span class="cal-day">28</span>
+                                    <span class="cal-month">Oct</span>
+                                </div>
+                                <div class="cal-info">
+                                    <h4>Veillée de Prière</h4>
+                                    <p><i class="fas fa-clock"></i> 19h00 - 22h00</p>
+                                </div>
+                            </div>
+                            <div class="calendar-item">
+                                <div class="cal-date">
+                                    <span class="cal-day">5</span>
+                                    <span class="cal-month">Nov</span>
+                                </div>
+                                <div class="cal-info">
+                                    <h4>Sortie Nature JA</h4>
+                                    <p><i class="fas fa-clock"></i> 8h00 - 16h00</p>
+                                </div>
+                            </div>
+                            <div class="calendar-item">
+                                <div class="cal-date">
+                                    <span class="cal-day">12</span>
+                                    <span class="cal-month">Nov</span>
+                                </div>
+                                <div class="cal-info">
+                                    <h4>Gala de Chorales</h4>
+                                    <p><i class="fas fa-clock"></i> 14h00 - 18h00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calendar-info">
+                            <h3>Rejoignez <span>notre calendrier</span></h3>
+                            <p>Recevez toutes nos activités et événements directement dans votre agenda. Restez informé des cultes, études bibliques, rencontres de jeunesse et activités communautaires.</p>
+                            <p><i class="fas fa-check" style="color:#B8900C;"></i> Tous les événements sont ouverts à tous</p>
+                            <p><i class="fas fa-check" style="color:#B8900C;"></i> Entrée libre et gratuite</p>
+                            <button class="btn-primary" onclick="window.location.href='contact.html'">
+                                <i class="fas fa-calendar-plus"></i> S'abonner
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION ÉVÉNEMENTS PASSÉS -->
+            <section class="archive-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">Archives</span>
+                        <h2>Événements <span>passés</span></h2>
+                    </div>
+                    <div class="archive-grid">
+                        <div class="archive-card">
+                            <div class="archive-date">
+                                <span class="day">20</span>
+                                <span class="month">Août</span>
+                            </div>
+                            <div class="archive-info">
+                                <span class="archive-category">Culte</span>
+                                <h4>Sabbat des Jeunes</h4>
+                                <p><i class="fas fa-clock"></i> 8h25 - 13h00</p>
+                            </div>
+                        </div>
+                        <div class="archive-card">
+                            <div class="archive-date">
+                                <span class="day">8</span>
+                                <span class="month">Août</span>
+                            </div>
+                            <div class="archive-info">
+                                <span class="archive-category">Social</span>
+                                <h4>Distribution de Vivres</h4>
+                                <p><i class="fas fa-clock"></i> 9h00 - 12h00</p>
+                            </div>
+                        </div>
+                        <div class="archive-card">
+                            <div class="archive-date">
+                                <span class="day">25</span>
+                                <span class="month">Juillet</span>
+                            </div>
+                            <div class="archive-info">
+                                <span class="archive-category">Étude</span>
+                                <h4>Séminaire sur le Mariage</h4>
+                                <p><i class="fas fa-clock"></i> 14h00 - 17h00</p>
+                            </div>
+                        </div>
+                        <div class="archive-card">
+                            <div class="archive-date">
+                                <span class="day">15</span>
+                                <span class="month">Juillet</span>
+                            </div>
+                            <div class="archive-info">
+                                <span class="archive-category">Jeunesse</span>
+                                <h4>Camp des Jeunes</h4>
+                                <p><i class="fas fa-clock"></i> 3 jours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-about">
+                            <h3>ADVENTISTE KASENGA</h3>
+                            <p>Une communauté de foi et d'espérance, engagée à suivre Jésus-Christ et à servir notre prochain.</p>
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-links">
+                            <h4>Liens rapides</h4>
+                            <ul>
+                                <li><a href="index.html">Accueil</a></li>
+                                <li><a href="a-propos.html">À propos</a></li>
+                                <li><a href="croyances.html">Croyances</a></li>
+                                <li><a href="evenements.html">Événements</a></li>
+                                <li><a href="direct.html">En Direct</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-contact">
+                            <h4>Nous trouver</h4>
+                            <p><i class="fas fa-map-pin"></i> Kasenga, près du marché central</p>
+                            <p><i class="fas fa-phone"></i> +243 827 210 152</p>
+                            <p><i class="fas fa-envelope"></i> eglise@adventiste.org</p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>© 2026 Église Adventiste Kasenga | UTC-uvira | Hub-Tech DRC version 2.0</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- FIN CONTENT-LEFT -->
+
+        <!-- SIDEBAR DROITE -->
+        <aside class="sidebar-right">
+            <div class="sidebar-logo">
+                <i class="fas fa-cross cross-icon"></i>
+                <h2>ADVENTISTE <br><span>KASENGA</span></h2>
+                <p class="subtitle">Uvira · RDC</p>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-verse">
+                "Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse pas, mais qu'il ait la vie éternelle."
+                <span class="verse-ref">— Jean 3:16</span>
+            </div>
+
+            <button class="sidebar-btn" onclick="window.location.href='contact.html'">
+                <i class="fas fa-hands-praying"></i> Nous rejoindre
+            </button>
+
+            <div class="sidebar-divider"></div>
+
+            <div style="width:100%; text-align:center; font-size:0.8rem; opacity:0.8; line-height:1.8;">
+                <p><i class="fas fa-clock" style="color:#B8900C;"></i> Cultes: Samedi 9h</p>
+                <p><i class="fas fa-map-pin" style="color:#B8900C;"></i> Kasenga, Uvira</p>
+            </div>
+
+            <div class="sidebar-contact">
+                <p><i class="fas fa-phone"></i> +243 827 210 152</p>
+                <p><i class="fas fa-envelope"></i> eglise@adventiste.org</p>
+                <p style="margin-top:0.5rem; font-size:0.65rem; opacity:0.5;">© 2026 · Tous droits réservés</p>
+            </div>
+        </aside>
+
+    </div>
+    <!-- FIN MAIN-WRAPPER -->
+
+    <script>
+        // Menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+            });
+        }
+    </script>
+
 </body>
 </html>
