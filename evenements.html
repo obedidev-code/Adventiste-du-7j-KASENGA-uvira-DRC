@@ -6,832 +6,7 @@
     <title>Événements - Église Adventiste Kasenga</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ============================================================
-           RESET & BASE
-           ============================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #f4f7fc;
-            color: #1e1e2a;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ============================================================
-           WRAPPER PRINCIPAL AVEC SIDEBAR DROITE
-           ============================================================ */
-        .main-wrapper {
-            display: flex;
-            gap: 0;
-            min-height: 100vh;
-        }
-
-        .content-left {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* ============================================================
-           SIDEBAR DROITE (fond bleu avec logo Adventiste)
-           ============================================================ */
-        .sidebar-right {
-            width: 240px;
-            background: linear-gradient(180deg, #0a2a4a 0%, #1a4b7a 50%, #0a2a4a 100%);
-            padding: 2rem 1.2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            flex-shrink: 0;
-            border-left: 3px solid #B8900C;
-        }
-
-        .sidebar-logo {
-            margin-bottom: 2rem;
-            width: 100%;
-        }
-
-        .sidebar-logo .cross-icon {
-            font-size: 3.5rem;
-            color: #B8900C;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-logo h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: uppercase;
-            line-height: 1.3;
-        }
-
-        .sidebar-logo h2 span {
-            color: #B8900C;
-        }
-
-        .sidebar-logo .subtitle {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            letter-spacing: 3px;
-            margin-top: 0.3rem;
-        }
-
-        .sidebar-divider {
-            width: 60px;
-            height: 2px;
-            background: #B8900C;
-            margin: 1.5rem auto;
-        }
-
-        .sidebar-verse {
-            font-size: 0.85rem;
-            font-style: italic;
-            opacity: 0.9;
-            line-height: 1.6;
-            padding: 0 0.5rem;
-        }
-
-        .sidebar-verse .verse-ref {
-            display: block;
-            font-style: normal;
-            font-weight: 600;
-            color: #B8900C;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-        }
-
-        .sidebar-btn {
-            background: #B8900C;
-            color: #0a2a4a;
-            border: none;
-            padding: 0.7rem 1.8rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: 0.2s;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar-btn:hover {
-            background: #d4a815;
-        }
-
-        .sidebar-contact {
-            margin-top: auto;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            width: 100%;
-            font-size: 0.75rem;
-            opacity: 0.7;
-        }
-
-        .sidebar-contact i {
-            color: #B8900C;
-            margin-right: 6px;
-        }
-
-        .sidebar-contact p {
-            margin-bottom: 0.3rem;
-        }
-
-        /* ============================================================
-           HEADER / NAVBAR
-           ============================================================ */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 2rem;
-            background: white;
-            border-bottom: 2px solid #e9edf2;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #0c2d4b;
-        }
-        .logo i {
-            font-size: 1.8rem;
-            color: #1a4b7a;
-        }
-        .logo span {
-            font-weight: 300;
-            margin-right: 4px;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
-        .nav a {
-            text-decoration: none;
-            color: #1f3f5c;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: 0.15s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-        }
-        .nav a:hover {
-            border-bottom-color: #1a4b7a;
-            color: #0a2840;
-        }
-        .nav a.active {
-            border-bottom-color: #B8900C;
-            color: #0a2840;
-        }
-
-        .btn-join {
-            background: #1a4b7a;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .btn-join:hover {
-            background: #0f3a60;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: #1a3f5c;
-            cursor: pointer;
-        }
-
-        /* ============================================================
-           PAGE HEADER (Bannière de la page)
-           ============================================================ */
-        .page-header {
-            background: linear-gradient(145deg, #eef3f9 0%, #dce6f0 100%);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid #cddae8;
-        }
-
-        .page-header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #0c2d4b;
-            letter-spacing: -0.5px;
-        }
-
-        .page-header h1 span {
-            color: #B8900C;
-        }
-
-        .page-header .breadcrumb {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #1f4668;
-        }
-
-        .page-header .breadcrumb a {
-            color: #1a4b7a;
-            text-decoration: none;
-        }
-
-        .page-header .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        /* ============================================================
-           SECTION FILTRES / RECHERCHE
-           ============================================================ */
-        .filters-section {
-            padding: 2rem 0;
-            background: white;
-            border-bottom: 2px solid #e9edf2;
-        }
-
-        .filters-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .filters-wrapper .filter-label {
-            font-weight: 600;
-            color: #0a2840;
-            margin-right: 0.5rem;
-        }
-
-        .filters-wrapper select,
-        .filters-wrapper input {
-            padding: 0.5rem 1rem;
-            border: 2px solid #c8d6e5;
-            font-size: 0.95rem;
-            background: white;
-            outline: none;
-            transition: 0.15s;
-        }
-
-        .filters-wrapper select:focus,
-        .filters-wrapper input:focus {
-            border-color: #1a4b7a;
-        }
-
-        .filters-wrapper .search-box {
-            display: flex;
-            gap: 0;
-        }
-
-        .filters-wrapper .search-box input {
-            border-right: none;
-            min-width: 200px;
-        }
-
-        .filters-wrapper .search-box button {
-            background: #1a4b7a;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        .filters-wrapper .search-box button:hover {
-            background: #0f3a60;
-        }
-
-        /* ============================================================
-           SECTION ÉVÉNEMENTS À VENIR
-           ============================================================ */
-        .events-section {
-            padding: 3rem 0;
-            background: #f5f8fc;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-tag {
-            display: inline-block;
-            background: #eaf1fa;
-            padding: 0.2rem 1.5rem;
-            font-weight: 600;
-            color: #1a4b7a;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .section-header h2 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #0c2d4b;
-            letter-spacing: -0.5px;
-        }
-
-        .section-header h2 span {
-            color: #B8900C;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .event-card {
-            background: white;
-            overflow: hidden;
-            border: 2px solid #eef3f8;
-            transition: 0.2s;
-        }
-
-        .event-card:hover {
-            border-color: #1a4b7a;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-        }
-
-        .event-card .event-image {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event-card .event-image img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .event-card .event-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #B8900C;
-            color: #0a2a4a;
-            padding: 0.3rem 1rem;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .event-card .event-badge.passed {
-            background: #6c757d;
-            color: white;
-        }
-
-        .event-card .event-content {
-            padding: 1.5rem;
-        }
-
-        .event-card .event-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-            color: #3d5e7a;
-        }
-
-        .event-card .event-meta i {
-            color: #1a4b7a;
-            width: 20px;
-        }
-
-        .event-card .event-content h3 {
-            font-size: 1.3rem;
-            color: #0a2840;
-            margin-bottom: 0.5rem;
-        }
-
-        .event-card .event-content p {
-            color: #2d445d;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-        }
-
-        .event-card .event-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            padding-top: 1rem;
-            border-top: 2px solid #eef3f8;
-        }
-
-        .event-card .event-footer .btn-event {
-            background: transparent;
-            border: 2px solid #1a4b7a;
-            color: #1a4b7a;
-            padding: 0.4rem 1.4rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        .event-card .event-footer .btn-event:hover {
-            background: #1a4b7a;
-            color: white;
-        }
-
-        .event-card .event-footer .event-category {
-            font-size: 0.8rem;
-            background: #eaf1fa;
-            padding: 0.2rem 0.8rem;
-            color: #1a4b7a;
-            font-weight: 600;
-        }
-
-        /* ============================================================
-           SECTION ÉVÉNEMENTS PASSÉS (archive)
-           ============================================================ */
-        .archive-section {
-            padding: 3rem 0;
-            background: white;
-            border-top: 2px solid #e9edf2;
-        }
-
-        .archive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .archive-card {
-            display: flex;
-            gap: 1.2rem;
-            padding: 1.2rem;
-            border: 2px solid #eef3f8;
-            background: #f9fbfd;
-            transition: 0.2s;
-            align-items: center;
-        }
-
-        .archive-card:hover {
-            border-color: #1a4b7a;
-        }
-
-        .archive-card .archive-date {
-            min-width: 60px;
-            text-align: center;
-            background: #1a4b7a;
-            color: white;
-            padding: 0.5rem 0.8rem;
-        }
-
-        .archive-card .archive-date .day {
-            display: block;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .archive-card .archive-date .month {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .archive-card .archive-info h4 {
-            font-size: 1rem;
-            color: #0a2840;
-            margin-bottom: 0.2rem;
-        }
-
-        .archive-card .archive-info p {
-            font-size: 0.85rem;
-            color: #3d5e7a;
-        }
-
-        .archive-card .archive-info .archive-category {
-            font-size: 0.7rem;
-            color: #B8900C;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ============================================================
-           SECTION AGENDA / CALENDRIER (simplifié)
-           ============================================================ */
-        .calendar-section {
-            padding: 3rem 0;
-            background: #f5f8fc;
-            border-top: 2px solid #e9edf2;
-        }
-
-        .calendar-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .calendar-list .calendar-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 2px solid #eef3f8;
-        }
-
-        .calendar-list .calendar-item:last-child {
-            border-bottom: none;
-        }
-
-        .calendar-list .calendar-item .cal-date {
-            min-width: 50px;
-            text-align: center;
-            background: #1a4b7a;
-            color: white;
-            padding: 0.3rem 0.5rem;
-        }
-
-        .calendar-list .calendar-item .cal-date .cal-day {
-            display: block;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .calendar-list .calendar-item .cal-date .cal-month {
-            display: block;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-        }
-
-        .calendar-list .calendar-item .cal-info h4 {
-            font-size: 1rem;
-            color: #0a2840;
-        }
-
-        .calendar-list .calendar-item .cal-info p {
-            font-size: 0.85rem;
-            color: #3d5e7a;
-        }
-
-        .calendar-info {
-            background: white;
-            padding: 2rem;
-            border: 2px solid #eef3f8;
-        }
-
-        .calendar-info h3 {
-            font-size: 1.4rem;
-            color: #0c2d4b;
-            margin-bottom: 0.8rem;
-        }
-
-        .calendar-info h3 span {
-            color: #B8900C;
-        }
-
-        .calendar-info p {
-            color: #2d445d;
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-        }
-
-        .calendar-info .btn-primary {
-            background: #1a4b7a;
-            color: white;
-            border: none;
-            padding: 0.7rem 2rem;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.15s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .calendar-info .btn-primary:hover {
-            background: #0f3a60;
-        }
-
-        /* ============================================================
-           FOOTER
-           ============================================================ */
-        .footer {
-            background: #eef3f9;
-            padding: 2.5rem 0 1.5rem;
-            border-top: 2px solid #ccdae8;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2.5rem;
-        }
-        .footer-about h3 {
-            color: #0c2d4b;
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-        .footer-about p {
-            color: #1f3f5c;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 1.4rem;
-        }
-        .footer-social a {
-            color: #1f4668;
-            transition: 0.15s;
-        }
-        .footer-social a:hover {
-            color: #0c2d4b;
-        }
-
-        .footer-links h4,
-        .footer-contact h4 {
-            color: #0c2d4b;
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-        }
-        .footer-links ul {
-            list-style: none;
-        }
-        .footer-links li {
-            margin-bottom: 0.4rem;
-        }
-        .footer-links a {
-            text-decoration: none;
-            color: #1f3f5c;
-            font-size: 0.95rem;
-        }
-        .footer-links a:hover {
-            color: #0a2840;
-            text-decoration: underline;
-        }
-        .footer-contact p {
-            color: #1f3f5c;
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
-        }
-        .footer-contact i {
-            width: 24px;
-            color: #1a4b7a;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            margin-top: 2rem;
-            border-top: 2px solid #cad8ea;
-            font-size: 0.9rem;
-            color: #3e5f7a;
-        }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
-        @media (max-width: 992px) {
-            .sidebar-right {
-                display: none;
-            }
-            .main-wrapper {
-                flex-direction: column;
-            }
-            .calendar-wrapper {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-            .filters-wrapper {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .filters-wrapper .search-box input {
-                min-width: auto;
-            }
-            .filters-wrapper .search-box {
-                width: 100%;
-            }
-            .filters-wrapper .search-box input {
-                flex: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.8rem;
-                padding: 1rem 0 0.5rem;
-                border-top: 2px solid #e9edf2;
-            }
-            .nav.open {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-
-            .page-header {
-                padding: 2rem 1rem;
-            }
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.6rem;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .archive-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header {
-                padding: 0.75rem 1rem;
-            }
-            .logo {
-                font-size: 1.1rem;
-            }
-            .logo i {
-                font-size: 1.4rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .calendar-list .calendar-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-header h1 {
-                font-size: 1.5rem;
-            }
-            .event-card .event-image img {
-                height: 160px;
-            }
-            .filters-wrapper select,
-            .filters-wrapper input {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -844,7 +19,7 @@
             <!-- HEADER / NAVBAR -->
             <header class="header">
                 <div class="logo">
-                    <i class="fas fa-cross"></i>
+                    <img src="images/seventh-day-adventist-church.jpg" alt="" style="width: 45px; height: 55px;">
                     <span>ADVENTISTE</span> KASENGA
                 </div>
                 <nav class="nav" id="nav">
@@ -1209,8 +384,8 @@
         <!-- SIDEBAR DROITE -->
         <aside class="sidebar-right">
             <div class="sidebar-logo">
-                <i class="fas fa-cross cross-icon"></i>
-                <h2>ADVENTISTE <br><span>KASENGA</span></h2>
+                <img src="images/seventh-day-adventist-church.jpg" alt="" style="width: 80px; height: 90px; border-radius: 50%;">
+                <h2>ADVENTISTE DU SEPTIEME JOUR DE<br><span>KASENGA</span></h2>
                 <p class="subtitle">Uvira · RDC</p>
             </div>
 
@@ -1228,7 +403,7 @@
             <div class="sidebar-divider"></div>
 
             <div style="width:100%; text-align:center; font-size:0.8rem; opacity:0.8; line-height:1.8;">
-                <p><i class="fas fa-clock" style="color:#B8900C;"></i> Cultes: Samedi 9h</p>
+                <p><i class="fas fa-clock" style="color:#B8900C;"></i> Cultes: Samedi 8h25'</p>
                 <p><i class="fas fa-map-pin" style="color:#B8900C;"></i> Kasenga, Uvira</p>
             </div>
 
@@ -1242,6 +417,40 @@
     </div>
     <!-- FIN MAIN-WRAPPER -->
 
+
+      <!-- CHATBOT -->
+    <div id="chatbot-icon" class="chatbot-icon">
+        <i class="fas fa-comment-dots"></i>
+        <span class="chatbot-pulse"></span>
+    </div>
+
+    <div id="chatbot-window" class="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <img src="images/seventh-day-adventist-church.jpg" alt="" style="width: 30px; height: 40px; border-radius: 50%;">
+                <span>Assistant Adventiste</span>
+            </div>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="bot-message">
+                <i class="fas fa-heart"></i>
+                <span>Bonjour et que Dieu vous bénisse ! 🙏 Comment puis-je vous aider ?</span>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Écrivez votre message...">
+            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+        <div class="ajout">
+        <div class="marge">
+            <img src="images/aller dans le monde.jpg" alt="logo">
+        </div>
+    </div>
+
+
     <script>
         // Menu toggle
         const menuToggle = document.getElementById('menu-toggle');
@@ -1249,6 +458,47 @@
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
                 nav.classList.toggle('open');
+            });
+        }
+
+                // Chatbot toggle
+        const chatIcon = document.getElementById('chatbot-icon');
+        const chatWindow = document.getElementById('chatbot-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chatbot-input');
+        const chatSend = document.getElementById('chatbot-send');
+        const chatMessages = document.getElementById('chatbot-messages');
+
+        function toggleChat() {
+            chatWindow.classList.toggle('active');
+        }
+
+        if (chatIcon) chatIcon.addEventListener('click', toggleChat);
+        if (closeChat) closeChat.addEventListener('click', toggleChat);
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            const userDiv = document.createElement('div');
+            userDiv.className = 'user-message';
+            userDiv.innerHTML = `<i class="fas fa-user"></i><span>${text}</span>`;
+            chatMessages.appendChild(userDiv);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bot-message';
+                botDiv.innerHTML = `<i class="fas fa-heart"></i><span>Merci pour votre message. Un frère ou une sœur vous répondra bientôt. Que Dieu vous bénisse !</span>`;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 600);
+        }
+
+        if (chatSend) chatSend.addEventListener('click', sendMessage);
+        if (chatInput) {
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendMessage();
             });
         }
     </script>

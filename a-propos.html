@@ -6,701 +6,7 @@
     <title>À propos - Église Adventiste Kasenga</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ============================================================
-           RESET & BASE
-           ============================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #f4f7fc;
-            color: #1e1e2a;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ============================================================
-           WRAPPER PRINCIPAL AVEC SIDEBAR DROITE
-           ============================================================ */
-        .main-wrapper {
-            display: flex;
-            gap: 0;
-            min-height: 100vh;
-        }
-
-        .content-left {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* ============================================================
-           SIDEBAR DROITE (fond bleu avec logo Adventiste)
-           ============================================================ */
-        .sidebar-right {
-            width: 240px;
-            background: linear-gradient(180deg, #0a2a4a 0%, #1a4b7a 50%, #0a2a4a 100%);
-            padding: 2rem 1.2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            flex-shrink: 0;
-            border-left: 3px solid #B8900C;
-        }
-
-        .sidebar-logo {
-            margin-bottom: 2rem;
-            width: 100%;
-        }
-
-        .sidebar-logo .cross-icon {
-            font-size: 3.5rem;
-            color: #B8900C;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-logo h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: uppercase;
-            line-height: 1.3;
-        }
-
-        .sidebar-logo h2 span {
-            color: #B8900C;
-        }
-
-        .sidebar-logo .subtitle {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            letter-spacing: 3px;
-            margin-top: 0.3rem;
-        }
-
-        .sidebar-divider {
-            width: 60px;
-            height: 2px;
-            background: #B8900C;
-            margin: 1.5rem auto;
-        }
-
-        .sidebar-verse {
-            font-size: 0.85rem;
-            font-style: italic;
-            opacity: 0.9;
-            line-height: 1.6;
-            padding: 0 0.5rem;
-        }
-
-        .sidebar-verse .verse-ref {
-            display: block;
-            font-style: normal;
-            font-weight: 600;
-            color: #B8900C;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-        }
-
-        .sidebar-btn {
-            background: #B8900C;
-            color: #0a2a4a;
-            border: none;
-            padding: 0.7rem 1.8rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: 0.2s;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar-btn:hover {
-            background: #d4a815;
-        }
-
-        .sidebar-contact {
-            margin-top: auto;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            width: 100%;
-            font-size: 0.75rem;
-            opacity: 0.7;
-        }
-
-        .sidebar-contact i {
-            color: #B8900C;
-            margin-right: 6px;
-        }
-
-        .sidebar-contact p {
-            margin-bottom: 0.3rem;
-        }
-
-        /* ============================================================
-           HEADER / NAVBAR
-           ============================================================ */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 2rem;
-            background: white;
-            border-bottom: 2px solid #e9edf2;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #0c2d4b;
-        }
-        .logo i {
-            font-size: 1.8rem;
-            color: #1a4b7a;
-        }
-        .logo span {
-            font-weight: 300;
-            margin-right: 4px;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
-        .nav a {
-            text-decoration: none;
-            color: #1f3f5c;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: 0.15s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-        }
-        .nav a:hover {
-            border-bottom-color: #1a4b7a;
-            color: #0a2840;
-        }
-        .nav a.active {
-            border-bottom-color: #B8900C;
-            color: #0a2840;
-        }
-
-        .btn-join {
-            background: #1a4b7a;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .btn-join:hover {
-            background: #0f3a60;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: #1a3f5c;
-            cursor: pointer;
-        }
-
-        /* ============================================================
-           PAGE HEADER (Bannière de la page)
-           ============================================================ */
-        .page-header {
-            background: linear-gradient(145deg, #eef3f9 0%, #dce6f0 100%);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid #cddae8;
-        }
-
-        .page-header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #0c2d4b;
-            letter-spacing: -0.5px;
-        }
-
-        .page-header h1 span {
-            color: #B8900C;
-        }
-
-        .page-header .breadcrumb {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #1f4668;
-        }
-
-        .page-header .breadcrumb a {
-            color: #1a4b7a;
-            text-decoration: none;
-        }
-
-        .page-header .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        /* ============================================================
-           SECTION NOTRE HISTOIRE
-           ============================================================ */
-        .history-section {
-            padding: 3rem 0;
-            background: white;
-            border-bottom: 2px solid #e9edf2;
-        }
-
-        .history-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .history-image img {
-            width: 100%;
-            border: 2px solid #e5ecf3;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        .history-content .section-tag {
-            display: inline-block;
-            background: #eaf1fa;
-            padding: 0.2rem 1.5rem;
-            font-weight: 600;
-            color: #1a4b7a;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .history-content h2 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #0c2d4b;
-            margin-bottom: 1rem;
-        }
-
-        .history-content h2 span {
-            color: #B8900C;
-        }
-
-        .history-content p {
-            color: #2d445d;
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-        }
-
-        /* ============================================================
-           SECTION NOTRE MISSION / VISION / VALEURS
-           ============================================================ */
-        .mission-section {
-            padding: 3rem 0;
-            background: #f5f8fc;
-        }
-
-        .mission-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .mission-card {
-            background: white;
-            padding: 2rem 1.8rem;
-            border: 2px solid #eef3f8;
-            transition: 0.2s;
-            text-align: center;
-        }
-
-        .mission-card:hover {
-            border-color: #1a4b7a;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-        }
-
-        .mission-card .icon {
-            background: #e2ebf5;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.2rem;
-            font-size: 2rem;
-            color: #1a4b7a;
-        }
-
-        .mission-card h3 {
-            font-size: 1.3rem;
-            color: #0a2840;
-            margin-bottom: 0.8rem;
-        }
-
-        .mission-card h3 span {
-            color: #B8900C;
-        }
-
-        .mission-card p {
-            color: #2d445d;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ============================================================
-           SECTION NOTRE ÉQUIPE / PASTEURS
-           ============================================================ */
-        .team-section {
-            padding: 3rem 0;
-            background: white;
-            border-bottom: 2px solid #e9edf2;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            text-align: center;
-            padding: 2rem 1rem;
-            border: 2px solid #eef3f8;
-            background: #f9fbfd;
-            transition: 0.2s;
-        }
-
-        .team-card:hover {
-            border-color: #1a4b7a;
-        }
-
-        .team-card img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border: 3px solid #1a4b7a;
-            margin-bottom: 1rem;
-        }
-
-        .team-card h4 {
-            font-size: 1.1rem;
-            color: #0a2840;
-            margin-bottom: 0.2rem;
-        }
-
-        .team-card .role {
-            color: #B8900C;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .team-card p {
-            color: #3d5e7a;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* ============================================================
-           SECTION CHIFFRES CLÉS
-           ============================================================ */
-        .stats-section {
-            padding: 3rem 0;
-            background: #1a4b7a;
-            color: white;
-            border-top: 3px solid #B8900C;
-            border-bottom: 3px solid #B8900C;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item .number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #B8900C;
-            display: block;
-        }
-
-        .stat-item .label {
-            font-size: 1rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ============================================================
-           SECTION NOTRE FOI (Croyances)
-           ============================================================ */
-        .beliefs-section {
-            padding: 3rem 0;
-            background: white;
-        }
-
-        .beliefs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .belief-card {
-            padding: 1.8rem;
-            border: 2px solid #eef3f8;
-            background: #f9fbfd;
-            transition: 0.2s;
-        }
-
-        .belief-card:hover {
-            border-color: #1a4b7a;
-        }
-
-        .belief-card .icon {
-            font-size: 2rem;
-            color: #B8900C;
-            margin-bottom: 0.8rem;
-        }
-
-        .belief-card h4 {
-            font-size: 1.1rem;
-            color: #0a2840;
-            margin-bottom: 0.5rem;
-        }
-
-        .belief-card p {
-            color: #2d445d;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ============================================================
-           FOOTER (identique à l'accueil)
-           ============================================================ */
-        .footer {
-            background: #eef3f9;
-            padding: 2.5rem 0 1.5rem;
-            border-top: 2px solid #ccdae8;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2.5rem;
-        }
-        .footer-about h3 {
-            color: #0c2d4b;
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-        .footer-about p {
-            color: #1f3f5c;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 1.4rem;
-        }
-        .footer-social a {
-            color: #1f4668;
-            transition: 0.15s;
-        }
-        .footer-social a:hover {
-            color: #0c2d4b;
-        }
-
-        .footer-links h4,
-        .footer-contact h4 {
-            color: #0c2d4b;
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-        }
-        .footer-links ul {
-            list-style: none;
-        }
-        .footer-links li {
-            margin-bottom: 0.4rem;
-        }
-        .footer-links a {
-            text-decoration: none;
-            color: #1f3f5c;
-            font-size: 0.95rem;
-        }
-        .footer-links a:hover {
-            color: #0a2840;
-            text-decoration: underline;
-        }
-        .footer-contact p {
-            color: #1f3f5c;
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
-        }
-        .footer-contact i {
-            width: 24px;
-            color: #1a4b7a;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            margin-top: 2rem;
-            border-top: 2px solid #cad8ea;
-            font-size: 0.9rem;
-            color: #3e5f7a;
-        }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
-        @media (max-width: 992px) {
-            .sidebar-right {
-                display: none;
-            }
-            .main-wrapper {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .history-grid {
-                grid-template-columns: 1fr;
-            }
-            .history-image img {
-                max-height: 280px;
-            }
-            .mission-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.8rem;
-                padding: 1rem 0 0.5rem;
-                border-top: 2px solid #e9edf2;
-            }
-            .nav.open {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-
-            .page-header {
-                padding: 2rem 1rem;
-            }
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .mission-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-            }
-            .stat-item .number {
-                font-size: 2.2rem;
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            }
-
-            .header {
-                padding: 0.75rem 1rem;
-            }
-            .logo {
-                font-size: 1.1rem;
-            }
-            .logo i {
-                font-size: 1.4rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-header h1 {
-                font-size: 1.5rem;
-            }
-            .history-content h2 {
-                font-size: 1.6rem;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            .stat-item .number {
-                font-size: 1.8rem;
-            }
-            .beliefs-grid {
-                grid-template-columns: 1fr;
-            }
-            .team-card img {
-                width: 90px;
-                height: 90px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -713,7 +19,7 @@
             <!-- HEADER / NAVBAR -->
             <header class="header">
                 <div class="logo">
-                    <i class="fas fa-cross"></i>
+                     <img src="images/seventh-day-adventist-church.jpg" alt="" style="width: 45px; height: 55px;">
                     <span>ADVENTISTE</span> KASENGA
                 </div>
                 <nav class="nav" id="nav">
@@ -742,11 +48,11 @@
             </section>
 
             <!-- SECTION NOTRE HISTOIRE -->
+            <div class="container">
             <section class="history-section">
-                <div class="container">
                     <div class="history-grid">
                         <div class="history-image">
-                            <img src="images/les_seraphins.jpg" alt="Notre église - Histoire">
+                            <img src="images/adventiste 2.png" alt="Notre église - Histoire">
                         </div>
                         <div class="history-content">
                             <span class="section-tag">Notre histoire</span>
@@ -815,31 +121,31 @@
                 <div class="container">
                     <div class="section-header" style="text-align:center; margin-bottom: 1rem;">
                         <span class="section-tag">Notre équipe</span>
-                        <h2 style="font-size:2.2rem; font-weight:600; color:#0c2d4b;">Nos <span style="color:#B8900C;">Pasteurs</span> et Anciens</h2>
+                        <h2 style="font-size:2.2rem; font-weight:600; color:#0c2d4b;">Nos <span style="color:#B8900C;">Répresentant</span> et Anciens</h2>
                     </div>
                     <div class="team-grid">
                         <div class="team-card">
                             <img src="images/mzee_precie.jpg" alt="Pasteur">
-                            <h4>Pr. Jean-Pierre Mukendi</h4>
+                            <h4>Pr. ENTIPA BALUME BRAVE</h4>
                             <span class="role">Pasteur Principal</span>
-                            <p>20 ans de service pastoral, passionné par l'enseignement biblique et la jeunesse.</p>
+                            <p> + 7ans de service pastoral, passionné par l'enseignement biblique et la jeunesse.</p>
                         </div>
                         <div class="team-card">
                             <img src="images/aller dans le monde.jpg" alt="Pasteur">
-                            <h4>Pr. David Kasongo</h4>
+                            <h4>Mzee MWECI AMISI CLAIRON</h4>
                             <span class="role">Pasteur Associé</span>
-                            <p>Responsable des études bibliques et des groupes de prière, 12 ans d'expérience.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, adipisci sequi.</p>
                         </div>
                         <div class="team-card">
                             <img src="images/les_seraphins.jpg" alt="Ancien">
-                            <h4>Fr. Jonas Mwamba</h4>
-                            <span class="role">Ancien</span>
-                            <p>Ancien coordinateur des œuvres caritatives et des programmes communautaires.</p>
+                            <h4>Mzee SEPT</h4>
+                            <span class="role">Pasteur associé</span>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, et totam.</p>
                         </div>
                         <div class="team-card">
                             <img src="images/mzee_precie.jpg" alt="Ancien">
-                            <h4>Fr. Samuel Kambale</h4>
-                            <span class="role">Ancien / Jeunesse</span>
+                            <h4>Mzee Lorem ipsum.</h4>
+                            <span class="role">Pateur associé</span>
                             <p>Responsable du département des jeunes et des activités sportives et culturelles.</p>
                         </div>
                     </div>
@@ -857,22 +163,26 @@
                         <div class="belief-card">
                             <div class="icon"><i class="fas fa-bible"></i></div>
                             <h4>La Bible</h4>
-                            <p>Nous croyons que la Bible est la Parole inspirée de Dieu, la règle suprême de notre foi et de notre conduite.</p>
+                            <!-- <p>Nous croyons que la Bible est la Parole inspirée de Dieu, la règle suprême de notre foi et de notre conduite.</p> -->
+                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil fuga nostrum voluptas eaque quas porro vitae nemo saepe quae! Ea nam fugit facilis repudiandae magni animi minus, enim corrupti cum!</p>
                         </div>
                         <div class="belief-card">
                             <div class="icon"><i class="fas fa-cross"></i></div>
                             <h4>Jésus-Christ</h4>
-                            <p>Nous croyons en Jésus-Christ, Fils de Dieu, notre Sauveur et Seigneur, mort pour nos péchés et ressuscité pour notre justification.</p>
+                            <!-- <p>Nous croyons en Jésus-Christ, Fils de Dieu, notre Sauveur et Seigneur, mort pour nos péchés et ressuscité pour notre justification.</p> -->
+                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fuga laborum ipsam similique amet tempore omnis ducimus hic quod ipsum ullam consequatur, aliquid reprehenderit ipsa consequuntur, facere a necessitatibus accusamus.</p>
                         </div>
                         <div class="belief-card">
                             <div class="icon"><i class="fas fa-pray"></i></div>
                             <h4>Le Sabbat</h4>
-                            <p>Nous observons le septième jour (samedi) comme le sabbat biblique, jour de repos et de communion avec Dieu.</p>
+                            <!-- <p>Nous observons le septième jour (samedi) comme le sabbat biblique, jour de repos et de communion avec Dieu.</p> -->
+                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum odio magni in accusantium vitae consequuntur magnam consequatur fuga voluptates a accusamus impedit ratione nulla corporis, corrupti provident dolores dolorum neque?</p>
                         </div>
                         <div class="belief-card">
                             <div class="icon"><i class="fas fa-cloud-sun"></i></div>
                             <h4>Le Retour de Jésus</h4>
-                            <p>Nous attendons avec joie le retour glorieux de Jésus-Christ, qui viendra rétablir toutes choses et nous emmener dans sa présence éternelle.</p>
+                            <!-- <p>Nous attendons avec joie le retour glorieux de Jésus-Christ, qui viendra rétablir toutes choses et nous emmener dans sa présence éternelle.</p> -->
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam porro dolorum necessitatibus nisi possimus, sapiente deserunt molestias ducimus eligendi vel, ullam sint distinctio deleniti, nam impedit? Unde culpa facere earum.</p>
                         </div>
                     </div>
                 </div>
@@ -922,8 +232,8 @@
         <!-- SIDEBAR DROITE (fond bleu avec logo Adventiste) -->
         <aside class="sidebar-right">
             <div class="sidebar-logo">
-                <i class="fas fa-cross cross-icon"></i>
-                <h2>ADVENTISTE <br><span>KASENGA</span></h2>
+                <img src="images/seventh-day-adventist-church.jpg" alt="" style="width: 80px; height: 90px; border-radius: 50%;">
+                <h2>ADVENTISTE DU SEPTIEME JOUR DE<br><span>KASENGA</span></h2>
                 <p class="subtitle">Uvira · RDC</p>
             </div>
 
@@ -941,7 +251,7 @@
             <div class="sidebar-divider"></div>
 
             <div style="width:100%; text-align:center; font-size:0.8rem; opacity:0.8; line-height:1.8;">
-                <p><i class="fas fa-clock" style="color:#B8900C;"></i> Cultes: Samedi 9h</p>
+                <p><i class="fas fa-clock" style="color:#B8900C;"></i> Cultes: Samedi 8h25'</p>
                 <p><i class="fas fa-map-pin" style="color:#B8900C;"></i> Kasenga, Uvira</p>
             </div>
 
@@ -955,6 +265,40 @@
     </div>
     <!-- FIN MAIN-WRAPPER -->
 
+
+      <!-- CHATBOT -->
+    <div id="chatbot-icon" class="chatbot-icon">
+        <i class="fas fa-comment-dots"></i>
+        <span class="chatbot-pulse"></span>
+    </div>
+
+    <div id="chatbot-window" class="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <img src="images/seventh-day-adventist-church.jpg" alt="" style="width: 30px; height: 40px; border-radius: 50%;">
+                <span>Assistant Adventiste</span>
+            </div>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="bot-message">
+                <i class="fas fa-heart"></i>
+                <span>Bonjour et que Dieu vous bénisse ! 🙏 Comment puis-je vous aider ?</span>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Écrivez votre message...">
+            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <div class="ajout">
+        <div class="marge">
+            <img src="images/aller dans le monde.jpg" alt="logo">
+        </div>
+    </div>
+
+
     <script>
         // Menu toggle
         const menuToggle = document.getElementById('menu-toggle');
@@ -962,6 +306,47 @@
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
                 nav.classList.toggle('open');
+            });
+        }
+
+                // Chatbot toggle
+        const chatIcon = document.getElementById('chatbot-icon');
+        const chatWindow = document.getElementById('chatbot-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chatbot-input');
+        const chatSend = document.getElementById('chatbot-send');
+        const chatMessages = document.getElementById('chatbot-messages');
+
+        function toggleChat() {
+            chatWindow.classList.toggle('active');
+        }
+
+        if (chatIcon) chatIcon.addEventListener('click', toggleChat);
+        if (closeChat) closeChat.addEventListener('click', toggleChat);
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            const userDiv = document.createElement('div');
+            userDiv.className = 'user-message';
+            userDiv.innerHTML = `<i class="fas fa-user"></i><span>${text}</span>`;
+            chatMessages.appendChild(userDiv);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bot-message';
+                botDiv.innerHTML = `<i class="fas fa-heart"></i><span>Merci pour votre message. Un frère ou une sœur vous répondra bientôt. Que Dieu vous bénisse !</span>`;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 600);
+        }
+
+        if (chatSend) chatSend.addEventListener('click', sendMessage);
+        if (chatInput) {
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendMessage();
             });
         }
     </script>
