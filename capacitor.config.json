@@ -1,0 +1,9 @@
+{
+    "appId": "com.adventist-kasenga-7j.app",
+    "appName": "adventiste",
+    "webDir": "dist",
+    "server":{
+        "url": "https://adventiste-du-7j-kasenga-uvira-drc.vercel.app/",
+        "cleartext": true
+    }
+}
