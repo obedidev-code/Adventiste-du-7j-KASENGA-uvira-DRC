@@ -8,14 +8,14 @@
     "description": "Eglise Adventistedu 7e jour kasenga - uvira DRC",
     "icons": [
         {
-            "src": "images/seventh-day-adventist-church",
+            "src": "images/seventh-day-adventist-church.jpg",
             "sizes": "192 * 192",
             "type": "image/png"
         },
         {
-            "src": "images/seventh-day-adventist-church",
+            "src": "images/seventh-day-adventist-church.jpg",
             "sizes": "512 * 512",
-            "type": "image/png"
+            "type": "image/jpg"
         }
     ]
 }
