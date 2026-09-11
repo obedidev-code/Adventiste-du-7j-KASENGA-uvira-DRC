@@ -9,13 +9,25 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0a192f">  
-    <script>
-        if ('serviceWoker' in navigator){
-            window.addEventListener('load', () => {
-                navigator.serviceWoker.registrer('/sw.js');
-            });
-        }
-    </script>
+   <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js');
+        });
+    }
+
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Afficher un bouton ou une notification pour inviter l'utilisateur à installer l'application
+        setTimeout(() => {
+            if (confirm("Installer l'application dans votre appareil ?")) {
+                deferredPrompt.prompt();
+            }
+        }, 3000);
+    });
+</script>
 </head>
 <body>
 
